@@ -1,0 +1,2344 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "iteration": 1621002617334,
+    "links": [],
+    "panels": [
+        {
+            "collapsed": false,
+            "datasource": null,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 15,
+            "panels": [],
+            "title": "scenario stats",
+            "type": "row"
+        },
+        {
+            "datasource": "InfluxDB_v1",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 0,
+                "y": 1
+            },
+            "id": 4,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.5.5",
+            "targets": [
+                {
+                    "alias": "[[tag_step]]",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "nbomber__ok.request.count",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "operation",
+                            "operator": "=",
+                            "value": "complete"
+                        }
+                    ]
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "ok requests count",
+            "type": "stat"
+        },
+        {
+            "datasource": "InfluxDB_v1",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 1
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 3,
+                "y": 1
+            },
+            "id": 6,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.5.5",
+            "targets": [
+                {
+                    "alias": "[[tag_step]]",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "nbomber__fail.request.count",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "operation",
+                            "operator": "=",
+                            "value": "complete"
+                        }
+                    ]
+                }
+            ],
+            "title": "failed requests count",
+            "type": "stat"
+        },
+        {
+            "datasource": "InfluxDB_v1",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "ok"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "light-green",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "failed"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "light-red",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 6,
+                "y": 1
+            },
+            "id": 8,
+            "options": {
+                "displayLabels": [],
+                "legend": {
+                    "displayMode": "list",
+                    "placement": "right",
+                    "values": []
+                },
+                "pieType": "pie",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {}
+            },
+            "pluginVersion": "7.5.5",
+            "targets": [
+                {
+                    "alias": "ok",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "nbomber__ok.request.count",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT last(\"value\") FROM \"nbomber__ok.request.count\" WHERE (\"session_id\" =~ /^$session_id$/ AND \"scenario\" =~ /^$scenario$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+                    "queryType": "randomWalk",
+                    "rawQuery": false,
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "operation",
+                            "operator": "=",
+                            "value": "complete"
+                        }
+                    ]
+                },
+                {
+                    "alias": "failed",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "null"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__fail.request.count",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "B",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "sum"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "operation",
+                            "operator": "=",
+                            "value": "complete"
+                        }
+                    ]
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "requests",
+            "type": "piechart"
+        },
+        {
+            "collapsed": false,
+            "datasource": null,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 7
+            },
+            "id": 13,
+            "panels": [],
+            "repeat": null,
+            "title": "step stats",
+            "type": "row"
+        },
+        {
+            "activePatternIndex": 0,
+            "datasource": "InfluxDB_v1",
+            "defaultPattern": {
+                "row_col_wrapper": "_",
+                "bgColors": "green|orange|red",
+                "bgColors_overrides": "0->green|2->red|1->yellow",
+                "textColors": "red|orange|green",
+                "textColors_overrides": "0->red|2->green|1->yellow",
+                "clickable_cells_link": "",
+                "col_name": "Value",
+                "decimals": 2,
+                "delimiter": ".",
+                "displayTemplate": "_value_",
+                "defaultBGColor": "transparent",
+                "defaultTextColor": "",
+                "enable_bgColor": false,
+                "enable_bgColor_overrides": false,
+                "enable_textColor": false,
+                "enable_textColor_overrides": false,
+                "enable_clickable_cells": false,
+                "enable_time_based_thresholds": false,
+                "enable_transform": false,
+                "enable_transform_overrides": false,
+                "filter": {
+                    "value_above": "",
+                    "value_below": ""
+                },
+                "format": "none",
+                "name": "Default Pattern",
+                "null_color": "darkred",
+                "null_textcolor": "black",
+                "null_value": "No data",
+                "pattern": "*",
+                "row_name": "_series_",
+                "thresholds": "70,90",
+                "time_based_thresholds": [],
+                "transform_values": "_value_|_value_|_value_",
+                "transform_values_overrides": "0->down|1->up",
+                "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+                "valueName": "avg"
+            },
+            "default_title_for_rows": "Metric",
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 24,
+                "x": 0,
+                "y": 8
+            },
+            "id": 11,
+            "patterns": [],
+            "pluginVersion": "7.5.5",
+            "repeat": null,
+            "row_col_wrapper": "_",
+            "sorting_props": {
+                "col_index": -1,
+                "direction": "desc"
+            },
+            "targets": [
+                {
+                    "alias": "requests count",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$interval"
+                            ],
+                            "type": "time"
+                        }
+                    ],
+                    "measurement": "nbomber__ok.request.count",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "queryType": "randomWalk",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "operation",
+                            "operator": "=",
+                            "value": "complete"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPS",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$interval"
+                            ],
+                            "type": "time"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.request.rps",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "queryType": "randomWalk",
+                    "refId": "B",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "operation",
+                            "operator": "=",
+                            "value": "complete"
+                        }
+                    ]
+                },
+                {
+                    "alias": "latency min",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$interval"
+                            ],
+                            "type": "time"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.latency.minms",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "operation",
+                            "operator": "=",
+                            "value": "complete"
+                        }
+                    ]
+                }
+            ],
+            "title": "ok stats",
+            "type": "yesoreyeram-boomtable-panel"
+        },
+        {
+            "aliasColors": {
+                "load": "light-red"
+            },
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB_v1",
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "links": []
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 14
+            },
+            "hiddenSeries": false,
+            "id": 2,
+            "legend": {
+                "alignAsTable": false,
+                "avg": true,
+                "current": false,
+                "max": true,
+                "min": true,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.5.5",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "load",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__simulation.value",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "load",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "load",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:378",
+                    "format": "short",
+                    "label": "load simulation",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:379",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB_v1",
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "links": []
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 23
+            },
+            "hiddenSeries": false,
+            "id": 9,
+            "legend": {
+                "alignAsTable": false,
+                "avg": true,
+                "current": false,
+                "max": true,
+                "min": true,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.5.5",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "RPS",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.request.rps",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "rps",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "throuhput",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:378",
+                    "format": "reqps",
+                    "label": "RPS",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:379",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "aliasColors": {
+                "75%": "semi-dark-blue",
+                "99%": "semi-dark-purple",
+                "max": "semi-dark-red"
+            },
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB_v1",
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "links": []
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 32
+            },
+            "hiddenSeries": false,
+            "id": 16,
+            "legend": {
+                "alignAsTable": false,
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.5.5",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "min",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.latency.minms",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "latency_min",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "mean",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__fail.latency.meanms",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "latency_mean",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "max",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__fail.latency.maxms",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "latency_max",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "50%",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.latency.percent50",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "latency_p50",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "75%",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.latency.percent75",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "latency_p75",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "99%",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.latency.percent99",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "latency_p99",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "latency",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:378",
+                    "format": "short",
+                    "label": "latency, requests",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:379",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "aliasColors": {
+                "75%": "semi-dark-blue",
+                "99%": "semi-dark-purple",
+                "max": "semi-dark-red"
+            },
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB_v1",
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "links": []
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 41
+            },
+            "hiddenSeries": false,
+            "id": 17,
+            "legend": {
+                "alignAsTable": false,
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.5.5",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "alias": "min",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__fail.datatransfer.minbytes",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "datatransfer_min",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "mean",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.datatransfer.meanbytes",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "datatransfer_mean",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "max",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__fail.datatransfer.maxbytes",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "datatransfer_max",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "50%",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.datatransfer.percent50",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "datatransfer_p50",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "75%",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__ok.datatransfer.percent75",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "datatransfer_p75",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                },
+                {
+                    "alias": "99%",
+                    "groupBy": [
+                        {
+                            "params": [
+                                "$__interval"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "session_id"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "step"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "scenario"
+                            ],
+                            "type": "tag"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "hide": false,
+                    "measurement": "nbomber__fail.datatransfer.percent99",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "query": "SELECT mean(\"value\") FROM \"nbomber__fail.request.rps\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+                    "rawQuery": false,
+                    "refId": "datatransfer_p99",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [
+                            {
+                                "params": [
+                                    "value"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "last"
+                            }
+                        ]
+                    ],
+                    "tags": [
+                        {
+                            "key": "session_id",
+                            "operator": "=~",
+                            "value": "/^$session_id$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "scenario",
+                            "operator": "=~",
+                            "value": "/^$scenario$/"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "step",
+                            "operator": "=~",
+                            "value": "/^$step$/"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "data transfer",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "transformations": [],
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:378",
+                    "format": "bytes",
+                    "label": "data",
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:379",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": [
+            {
+                "allValue": null,
+                "current": {
+                    "selected": true,
+                    "text": "visualization",
+                    "value": "visualization"
+                },
+                "datasource": "InfluxDB_v1",
+                "definition": "SHOW TAG VALUES WITH KEY = \"test_suite\"",
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": null,
+                "multi": false,
+                "name": "test_suite",
+                "options": [
+                    {
+                        "selected": false,
+                        "text": "reporting",
+                        "value": "reporting"
+                    },
+                    {
+                        "selected": true,
+                        "text": "visualization",
+                        "value": "visualization"
+                    }
+                ],
+                "query": "SHOW TAG VALUES WITH KEY = \"test_suite\"",
+                "refresh": 0,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": null,
+                "current": {
+                    "selected": true,
+                    "text": "grafana1",
+                    "value": "grafana1"
+                },
+                "datasource": "InfluxDB_v1",
+                "definition": "SHOW TAG VALUES WITH KEY = \"test_name\"  WHERE test_suite=~ /^$test_suite$/",
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": null,
+                "multi": false,
+                "name": "test_name",
+                "options": [
+                    {
+                        "selected": false,
+                        "text": "grafana",
+                        "value": "grafana"
+                    },
+                    {
+                        "selected": true,
+                        "text": "grafana1",
+                        "value": "grafana1"
+                    }
+                ],
+                "query": "SHOW TAG VALUES WITH KEY = \"test_name\"  WHERE test_suite=~ /^$test_suite$/",
+                "refresh": 0,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": null,
+                "current": {
+                    "selected": false,
+                    "text": "2021-05-14_16.06.31_session_d561566c",
+                    "value": "2021-05-14_16.06.31_session_d561566c"
+                },
+                "datasource": "InfluxDB_v1",
+                "definition": "SHOW TAG VALUES WITH KEY = \"session_id\"   WHERE test_suite=~ /^$test_suite$/ AND  test_name=~ /^$test_name$/",
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": null,
+                "multi": false,
+                "name": "session_id",
+                "options": [],
+                "query": "SHOW TAG VALUES WITH KEY = \"session_id\"   WHERE test_suite=~ /^$test_suite$/ AND  test_name=~ /^$test_name$/",
+                "refresh": 2,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": null,
+                "current": {
+                    "selected": true,
+                    "text": "scenario_3",
+                    "value": "scenario_3"
+                },
+                "datasource": "InfluxDB_v1",
+                "definition": "SHOW TAG VALUES WITH KEY = \"scenario\"  WHERE session_id=~ /^$session_id$/",
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": null,
+                "multi": false,
+                "name": "scenario",
+                "options": [],
+                "query": "SHOW TAG VALUES WITH KEY = \"scenario\"  WHERE session_id=~ /^$session_id$/",
+                "refresh": 2,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": null,
+                "current": {
+                    "selected": false,
+                    "text": "pull_html_3",
+                    "value": "pull_html_3"
+                },
+                "datasource": "InfluxDB_v1",
+                "definition": "SHOW TAG VALUES WITH KEY = \"step\" WHERE session_id=~ /^$session_id$/  AND scenario=~ /^$scenario$/",
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": null,
+                "multi": false,
+                "name": "step",
+                "options": [
+                    {
+                        "selected": true,
+                        "text": "pull_html_3",
+                        "value": "pull_html_3"
+                    },
+                    {
+                        "selected": false,
+                        "text": "pull_html_4",
+                        "value": "pull_html_4"
+                    },
+                    {
+                        "selected": false,
+                        "text": "pull_html_5",
+                        "value": "pull_html_5"
+                    }
+                ],
+                "query": "SHOW TAG VALUES WITH KEY = \"step\" WHERE session_id=~ /^$session_id$/  AND scenario=~ /^$scenario$/",
+                "refresh": 0,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            }
+        ]
+    },
+    "time": {
+        "from": "2021-05-14T16:06:44.561Z",
+        "to": "2021-05-14T16:07:23.027Z"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "NBomber",
+    "uid": "d4VrwCnGk",
+    "version": 3
+}

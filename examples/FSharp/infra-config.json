@@ -2,7 +2,7 @@
     "InfluxDBSink": {
         "Url": "http://localhost:8086",
         "Database": "default",
-        "UserName": "",
-        "Password": ""
+        "UserName": "admin",
+        "Password": "adminpwd"
     }
 }

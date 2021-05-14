@@ -1,13 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "NBomber.Sinks.InfluxDB", "src\NBomber.Sinks.InfluxDB\NBomber.Sinks.InfluxDB.fsproj", "{9974ACD3-9EAF-473C-9B72-86F50DAC8145}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{91B963F2-3296-4B05-80B1-54A7EB7A0636}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp", "examples\FSharp\FSharp.fsproj", "{D2B77FE9-F018-4272-9363-56BE3C424758}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharp", "examples\FSharp\FSharp.fsproj", "{D2B77FE9-F018-4272-9363-56BE3C424758}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker-compose", "docker-compose", "{62A661A1-932D-4F0D-BB81-F0D7BF922F1A}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose\.env = docker-compose\.env
+		docker-compose\docker-compose.yml = docker-compose\docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "grafana", "grafana", "{6CDB590E-CCDC-460D-8822-02F439388FF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "provisioning", "provisioning", "{6F6C9345-DBFF-4DC8-B20E-9B1EEB6FA3BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dashboards", "dashboards", "{A5C6BF53-9CEA-4CD6-98A8-A61EBCD601BC}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose\grafana\provisioning\dashboards\influxdb.yml = docker-compose\grafana\provisioning\dashboards\influxdb.yml
+		docker-compose\grafana\provisioning\dashboards\NBomber.json = docker-compose\grafana\provisioning\dashboards\NBomber.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "datasources", "datasources", "{E62464B2-5192-4DD6-B925-C861EC490EC7}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose\grafana\provisioning\datasources\datasource.yml = docker-compose\grafana\provisioning\datasources\datasource.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +50,10 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D2B77FE9-F018-4272-9363-56BE3C424758} = {91B963F2-3296-4B05-80B1-54A7EB7A0636}
+		{6CDB590E-CCDC-460D-8822-02F439388FF9} = {62A661A1-932D-4F0D-BB81-F0D7BF922F1A}
+		{6F6C9345-DBFF-4DC8-B20E-9B1EEB6FA3BC} = {6CDB590E-CCDC-460D-8822-02F439388FF9}
+		{A5C6BF53-9CEA-4CD6-98A8-A61EBCD601BC} = {6F6C9345-DBFF-4DC8-B20E-9B1EEB6FA3BC}
+		{E62464B2-5192-4DD6-B925-C861EC490EC7} = {6F6C9345-DBFF-4DC8-B20E-9B1EEB6FA3BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A600C4E-4EAA-44ED-873A-F357DD2CF34C}

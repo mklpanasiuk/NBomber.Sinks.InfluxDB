@@ -57,21 +57,43 @@ type InfluxDBSink(metricsRoot: IMetricsRoot) =
                 let fL = s.Fail.Latency
                 let fD = s.Fail.DataTransfer
 
-                [("Ok.Request.Count", float okR.Count); ("Ok.Request.RPS", float okR.RPS)
-                 ("Ok.Latency.MinMs", float okL.MinMs); ("Ok.Latency.MeanMs", float okL.MeanMs)
-                 ("Ok.Latency.MaxMs", float okL.MaxMs); ("Ok.Latency.StdDev", float okL.StdDev)
-                 ("Ok.Latency.Percent50", float okL.Percent50); ("Ok.Latency.Percent75", float okL.Percent75)
-                 ("Ok.Latency.Percent95", float okL.Percent95); ("Ok.Latency.Percent99", float okL.Percent99)
-                 ("Ok.DataTransfer.MinKb", okD.MinKb); ("Ok.DataTransfer.MeanKb", okD.MeanKb)
-                 ("Ok.DataTransfer.MaxKb", okD.MaxKb); ("Ok.DataTransfer.AllMB", okD.AllMB)
+                [("Ok.Request.Count", float okR.Count)
+                 ("Ok.Request.RPS", float okR.RPS)
+                 ("Ok.Latency.MinMs", float okL.MinMs)
+                 ("Ok.Latency.MeanMs", float okL.MeanMs)
+                 ("Ok.Latency.MaxMs", float okL.MaxMs)
+                 ("Ok.Latency.StdDev", float okL.StdDev)
+                 ("Ok.Latency.Percent50", float okL.Percent50)
+                 ("Ok.Latency.Percent75", float okL.Percent75)
+                 ("Ok.Latency.Percent95", float okL.Percent95)
+                 ("Ok.Latency.Percent99", float okL.Percent99)
+                 ("Ok.DataTransfer.MinBytes", float okD.MinBytes)
+                 ("Ok.DataTransfer.MeanBytes", float okD.MeanBytes)
+                 ("Ok.DataTransfer.MaxBytes", float okD.MaxBytes)
+                 ("Ok.DataTransfer.Percent50", float okD.Percent50)
+                 ("Ok.DataTransfer.Percent75", float okD.Percent75)
+                 ("Ok.DataTransfer.Percent95", float okD.Percent95)
+                 ("Ok.DataTransfer.Percent99", float okD.Percent99)
+                 ("Ok.DataTransfer.AllBytes", float okD.AllBytes)
 
-                 ("Fail.Request.Count", float fR.Count); ("Fail.Request.RPS", float fR.RPS)
-                 ("Fail.Latency.MinMs", float fL.MinMs); ("Fail.Latency.MeanMs", float fL.MeanMs)
-                 ("Fail.Latency.MaxMs", float fL.MaxMs); ("Fail.Latency.StdDev", float fL.StdDev)
-                 ("Fail.Latency.Percent50", float fL.Percent50); ("Fail.Latency.Percent75", float fL.Percent75)
-                 ("Fail.Latency.Percent95", float fL.Percent95); ("Fail.Latency.Percent99", float fL.Percent99)
-                 ("Fail.DataTransfer.MinKb", fD.MinKb); ("Fail.DataTransfer.MeanKb", fD.MeanKb)
-                 ("Fail.DataTransfer.MaxKb", fD.MaxKb); ("Fail.DataTransfer.AllMB", fD.AllMB)
+                 ("Fail.Request.Count", float fR.Count)
+                 ("Fail.Request.RPS", float fR.RPS)
+                 ("Fail.Latency.MinMs", float fL.MinMs)
+                 ("Fail.Latency.MeanMs", float fL.MeanMs)
+                 ("Fail.Latency.MaxMs", float fL.MaxMs)
+                 ("Fail.Latency.StdDev", float fL.StdDev)
+                 ("Fail.Latency.Percent50", float fL.Percent50)
+                 ("Fail.Latency.Percent75", float fL.Percent75)
+                 ("Fail.Latency.Percent95", float fL.Percent95)
+                 ("Fail.Latency.Percent99", float fL.Percent99)
+                 ("Fail.DataTransfer.MinBytes", float fD.MinBytes)
+                 ("Fail.DataTransfer.MeanBytes", float fD.MeanBytes)
+                 ("Fail.DataTransfer.MaxBytes", float fD.MaxBytes)
+                 ("Fail.DataTransfer.Percent50", float fD.Percent50)
+                 ("Fail.DataTransfer.Percent75", float fD.Percent75)
+                 ("Fail.DataTransfer.Percent95", float fD.Percent95)
+                 ("Fail.DataTransfer.Percent99", float fD.Percent99)
+                 ("Fail.DataTransfer.AllBytes", float fD.AllBytes)
 
                  ("simulation.value", float simulation.Value)]
 
@@ -80,9 +102,9 @@ type InfluxDBSink(metricsRoot: IMetricsRoot) =
                         GaugeOptions(
                             Name = name,
                             Context = "NBomber",
-                            Tags = MetricTags([|"node_type"; "test_suite"; "test_name"
+                            Tags = MetricTags([|"node_type"; "test_suite"; "test_name"; "session_id"
                                                 "scenario"; "step"; "operation"; "simulation.name"|],
-                                              [|nodeType; testInfo.TestSuite; testInfo.TestName
+                                              [|nodeType; testInfo.TestSuite; testInfo.TestName; testInfo.SessionId
                                                 stats.ScenarioName; s.StepName; operation; simulation.SimulationName|]))
 
                     _metricsRoot.Measure.Gauge.SetValue(metric, value)
