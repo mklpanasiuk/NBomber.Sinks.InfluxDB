@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - '8086:8086'
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+
+  # set up an influxdb instance
+  influxdb_cli:
+    links:
+      - influxdb
+    image: influxdb:latest
+    entrypoint: influx setup --bucket ${INFLUXDB_BUCKET} -t ${INFLUXDB_TOKEN} -o ${INFLUXDB_ORGANIZATION} --username=${INFLUXDB_USERNAME} --password=${INFLUXDB_PASSWORD} --host=http://influxdb:8086 -f
+    restart: on-failure:10
+    depends_on:
+      - influxdb
+
+  grafana: 
+    image: grafana/grafana
+    ports:
+        - '3000:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - influxdb_cli
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+
+volumes:
+  influxdb-storage:
+  grafana-storage:

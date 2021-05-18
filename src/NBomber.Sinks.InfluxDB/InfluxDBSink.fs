@@ -11,6 +11,7 @@ open App.Metrics.Gauge
 open Microsoft.Extensions.Configuration
 
 open NBomber.Contracts
+open NBomber.Contracts.Stats
 
 [<CLIMutable>]
 type InfluxDbSinkConfig = {
